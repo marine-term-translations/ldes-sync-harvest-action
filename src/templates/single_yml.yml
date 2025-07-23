@@ -1,0 +1,22 @@
+{#
+    this template creates a yaml file from given data
+    data will be:
+     - row: eg({'identifier': {'type': 'uri', 'value': 'http://vocab.nerc.ac.uk/collection/P02/current/PPRD/1/'}, 'id_node': {'type': 'uri', 'value': 'http://vocab.nerc.ac.uk/collection/P02/current/PPRD/'}, 'altLabel': {'type': 'literal', 'value': 'WC_PrimaryProd'}, 'definition': {'type': 'literal', 'value': 'Parameters associated with the quantification of primary production.  This is defined as the fixation of carbon dioxide into either organic or inorganic carbon by living entities and so includes photosynthesis and calcification.'}})
+     - languages: eg(['fr', 'es'])
+     - source_items: eg([{'name': 'definition', 'path': 'http://www.w3.org/2004/02/skos/core#definition'}, {'name': 'altLabel', 'path': 'http://www.w3.org/2004/02/skos/core#altLabel'}])
+#}
+labels:
+  {%- for key, value in row.items() -%}
+  {%-for source_item in source_items -%}
+  {%- if key == source_item.name %}
+  - name: "{{ key }}"
+    path: "{{ source_item.path }}"
+    original: "{{ value.value }}"
+    translations:
+  {%- for language in languages %}
+      - {{ language }}: ""
+  {%- endfor -%}
+  {%- endif -%}
+  {%- endfor -%}
+  {%- endfor %}
+uri: "{{ row.identifier.value }}"

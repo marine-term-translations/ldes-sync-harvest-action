@@ -1,0 +1,33 @@
+name: On_Push_Testing
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test_build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Verify that the Docker image for the action builds
+        run: docker build . --file Dockerfile
+
+      - name: change latest tag
+        uses: EndBug/latest-tag@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # You can change the name of the tag or branch with this input.
+          # Default: 'latest'
+          ref: "latest"
+          # If a description is provided, the action will use it to create an annotated tag. If none is given, the action will create a lightweight tag.
+          # Default: ''
+          description: "latest version of the ldes-sync-harvest-action."
+          # Force-update a branch instead of using a tag.
+          # Default: false
+          force-branch: true

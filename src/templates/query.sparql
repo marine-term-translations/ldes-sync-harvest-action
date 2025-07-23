@@ -1,0 +1,29 @@
+{#
+    This template will be used to extract data to be placed into smaller yml files.
+    'language': 'en'
+    'id_path': "http://purl.org/dc/terms/isVersionOf"
+    dict_key_values:
+        eg: [
+            {
+                "name": "definition",
+                "path": " ex:p1 / <http://www.w3.org/2004/02/skos/core#definition>"
+            },
+            {
+                "name": "altlabel",
+                "path": "http://www.w3.org/2004/02/skos/core#altLabel"
+            },
+            {
+                "name": "preflabel",
+                "path": "http://www.w3.org/2004/02/skos/core#prefLabel"
+            }
+        ]
+#}
+
+SELECT ?id_node ?identifier {% for key in dict_key_values %}?{{ key.name }} {% endfor %}
+WHERE {
+    ?identifier a <{{id_path}}>.
+    ?identifier <http://purl.org/dc/terms/isVersionOf> ?id_node .
+    {% for key in dict_key_values %}
+    ?id_node <{{ key.path }}> ?{{ key.name }} .
+    {% endfor %}
+}

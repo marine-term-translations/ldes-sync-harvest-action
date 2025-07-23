@@ -1,0 +1,23 @@
+{
+  "name": "ldes_translation_gh_action",
+  "version": "0.0.1",
+  "description": "This document describes the workflow for translating terms from a source LDES and then perform translations to another language and publish them as a new LDES.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vliz-be-opsci/ldes_translation_gh_action.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vliz-be-opsci/ldes_translation_gh_action/issues"
+  },
+  "homepage": "https://github.com/vliz-be-opsci/ldes_translation_gh_action#readme",
+  "dependencies": {
+    "@treecg/actor-init-ldes-client": "^4.0.9",
+    "yaml": "^2.4.1"
+  }
+}

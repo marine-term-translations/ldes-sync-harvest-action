@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "ldes-translation-workflow"
+version = "0.0.1"
+description = ""
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pycountry = "^23.12.11"
+validators = "^0.25.0"
+pyyaml = "^6.0.1"
+rdflib = "^7.0.0"
+pyrdfj2 = "^0.0.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
